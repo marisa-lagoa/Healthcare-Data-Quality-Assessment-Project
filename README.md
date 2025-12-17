@@ -30,11 +30,63 @@ The insights and recommendations from this analysis focus on four main areas:
 
 # Data Structure Overview
 
-a. Entity-Relationship Diagram (ERD)
+### Logical Entity-Relationship Diagram - ERD
 
+Although this analysis was performed on a single csv file, a key finding was the severe data quality issues (e.g., duplicate hospital names, illogical clinical combinations). These issues are often prevented by a well-designed relational database.
 
+This Conceptual Data Model (ERD) illustrates how the data should be structured in a database to ensure data integrity and prevent the anomalies found. It shows the main entities—Patients, Admissions, Hospitals, Doctors, and Treatments—and how they are linked. This model serves as a blueprint for a more robust data system.
 
+The original dataset lacked unique identifiers (Primary Keys - PKs) for entities like Patients, Hospitals, and Doctors. This absence is the direct cause of the data fragmentation observed in the analysis (e.g., 39,639 unique hospital names). A well-structured database, as shown below, uses Foreign Keys (FKs) to link tables, ensuring that each hospital name is stored only once, thereby preventing the duplication and inconsistency issues found.
 
+erDiagram
+
+    PATIENTS {
+      patient_id PK
+      name
+      age
+      gender
+      blood_type
+    }
+
+    ADMISSIONS {
+      admission_id PK
+       patient_id FK
+       hospital_id FK
+       doctor_id FK
+       admission_date
+       discharge_date
+       admission_type
+       medical_condition
+       billing_amount
+       
+    }
+
+    TREATMENTS {
+        treatment_id PK
+        admission_id FK
+        medication
+        test_results
+    }
+
+    HOSPITALS {
+        hospital_id PK
+        hospital_name
+    }
+
+    DOCTORS {
+        doctor_id PK
+        doctor_name
+    }
+
+    PATIENTS ||--o{ ADMISSIONS : "has"
+    HOSPITALS ||--o{ ADMISSIONS : "records"
+    DOCTORS ||--o{ ADMISSIONS : "treats"
+    ADMISSIONS ||--o{ TREATMENTS : "includes"
+    
+A patient may have zero or multiple admissions, but each admission must be associated with exactly one patient.
+A hospital may record multiple admissions, but each admission occurs at a single hospital.
+A doctor may treat multiple admissions, while each admission is assigned to one doctor.
+An admission may include zero or multiple treatments, but each treatment belongs to exactly one admission.
 
 
 
