@@ -1,13 +1,18 @@
 # Healthcare-Data-Quality-Assessment-Project
 This project utilizes a healthcare dataset from Kaggle to develop and demonstrate practical data analysis skills relevant. While working with artificial data, this exercise provides valuable experience in identifying data quality issues, performing exploratory analysis, and understanding healthcare data structures that mirror real-world scenarios.
 
-Table of Contents
+# Table of Contents
 
 1.Background and Overview
+
 2.Data Structure Overview
+
 3.Executive Summary
+
 4.Insights Deep Dive
+
 5.Recommendations
+
 6.Caveats and Assumptions
 
 
