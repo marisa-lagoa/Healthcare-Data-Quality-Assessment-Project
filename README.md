@@ -1,6 +1,17 @@
 # Healthcare-Data-Quality-Assessment-Project
 This project utilizes a healthcare dataset from Kaggle to develop and demonstrate practical data analysis skills relevant. While working with artificial data, this exercise provides valuable experience in identifying data quality issues, performing exploratory analysis, and understanding healthcare data structures that mirror real-world scenarios.
 
+Table of Contents
+
+1.Background and Overview
+2.Data Structure Overview
+3.Executive Summary
+4.Insights Deep Dive
+5.Recommendations
+6.Caveats and Assumptions
+
+
+
 # Background and Overview
 
 ## Introduction to the Company
@@ -14,6 +25,23 @@ The primary objective of this analysis is to conduct an in-depth assessment of S
 ## How the Analysis Helps the Company
 
 This analysis is crucial for SynthCare Health as it exposes critical vulnerabilities in its data systems. By addressing the issues raised, the company can achieve more robust data that will lead to more accurate billing, better allocation of clinical resources, and more informed strategic decision-making. 
+
+## Methodology and Tools
+
+This analysis employed a hybrid data preparation approach that combined the accessibility of spreadsheet
+software with the reproducibility of programming tools.
+
+### Initial data cleaning in Excel:
+    • Removal of clearly erroneous negative billing values
+    • Basic formatting standardization
+    • Documentation of initial data quality issues
+### Data processing in R:
+	• Data type conversion and validation
+    • Advanced cleaning procedures
+    • Systematic quality assessment
+    • Exploratory data analysis and visualization
+This combined approach leveraged Excel’s accessibility for initial inspection and R’s reproducibility for
+systematic data processing.
 
 ## Areas of Focus
 
@@ -34,55 +62,57 @@ The insights and recommendations from this analysis focus on four main areas:
 
 Although this analysis was performed on a single csv file, a key finding was the severe data quality issues (e.g., duplicate hospital names, illogical clinical combinations). These issues are often prevented by a well-designed relational database.
 
-This Conceptual Data Model (ERD) illustrates how the data should be structured in a database to ensure data integrity and prevent the anomalies found. It shows the main entities—Patients, Admissions, Hospitals, Doctors, and Treatments—and how they are linked. This model serves as a blueprint for a more robust data system.
+This logical ERD illustrates how the data should be structured in a database to ensure data integrity and prevent the anomalies found. It shows the main entities—Patients, Admissions, Hospitals, Doctors, and Treatments—and how they are linked. This model serves as a blueprint for a more robust data system.
 
-The original dataset lacked unique identifiers (Primary Keys - PKs) for entities like Patients, Hospitals, and Doctors. This absence is the direct cause of the data fragmentation observed in the analysis (e.g., 39,639 unique hospital names). A well-structured database, as shown below, uses Foreign Keys (FKs) to link tables, ensuring that each hospital name is stored only once, thereby preventing the duplication and inconsistency issues found.
+The original dataset lacked unique identifiers (Primary Keys - PKs) for entities like Patients, Hospitals, and Doctors which are important for uniqueness. This absence is the direct cause of the data fragmentation observed in the analysis (e.g., 39,639 unique hospital names). A well-structured database, as shown below, uses Foreign Keys (FKs) to link tables, ensuring that each hospital name is stored only once, thereby preventing the duplication and inconsistency issues found.
 
+
+```mermaid
 erDiagram
-
     PATIENTS {
-      patient_id PK
-      name
-      age
-      gender
-      blood_type
-    }
-
-    ADMISSIONS {
-      admission_id PK
-       patient_id FK
-       hospital_id FK
-       doctor_id FK
-       admission_date
-       discharge_date
-       admission_type
-       medical_condition
-       billing_amount
-       
-    }
-
-    TREATMENTS {
-        treatment_id PK
-        admission_id FK
-        medication
-        test_results
+        int patient_id PK
+        string name
+        int age
+        string gender
+        string blood_type
     }
 
     HOSPITALS {
-        hospital_id PK
-        hospital_name
+        int hospital_id PK
+        string hospital_name
     }
 
     DOCTORS {
-        doctor_id PK
-        doctor_name
+        int doctor_id PK
+        string doctor_name
     }
 
-    PATIENTS ||--o{ ADMISSIONS : "has"
-    HOSPITALS ||--o{ ADMISSIONS : "records"
-    DOCTORS ||--o{ ADMISSIONS : "treats"
-    ADMISSIONS ||--o{ TREATMENTS : "includes"
-    
+    ADMISSIONS {
+        int admission_id PK
+        int patient_id FK
+        int hospital_id FK
+        int doctor_id FK
+        date admission_date
+        date discharge_date
+        string admission_type
+        string medical_condition
+        decimal billing_amount
+    }
+
+    TREATMENTS {
+        int treatment_id PK
+        int admission_id FK
+        string medication
+        string test_results
+    }
+
+    PATIENTS ||--o{ ADMISSIONS : has
+    HOSPITALS ||--o{ ADMISSIONS : records
+    DOCTORS ||--o{ ADMISSIONS : treats
+    ADMISSIONS ||--o{ TREATMENTS : includes
+
+```
+
 A patient may have zero or multiple admissions, but each admission must be associated with exactly one patient.
 A hospital may record multiple admissions, but each admission occurs at a single hospital.
 A doctor may treat multiple admissions, while each admission is assigned to one doctor.
