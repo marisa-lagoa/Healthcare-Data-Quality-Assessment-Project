@@ -32,14 +32,14 @@ This analysis employed a hybrid data preparation approach that combined the acce
 software with the reproducibility of programming tools.
 
 ### Initial data cleaning in Excel:
-    • Removal of clearly erroneous negative billing values
-    • Basic formatting standardization
-    • Documentation of initial data quality issues
+• Removal of clearly erroneous negative billing values
+• Basic formatting standardization
+• Documentation of initial data quality issues
 ### Data processing in R:
-	• Data type conversion and validation
-    • Advanced cleaning procedures
-    • Systematic quality assessment
-    • Exploratory data analysis and visualization
+• Data type conversion and validation
+• Advanced cleaning procedures
+• Systematic quality assessment
+• Exploratory data analysis and visualization
 This combined approach leveraged Excel’s accessibility for initial inspection and R’s reproducibility for
 systematic data processing.
 
