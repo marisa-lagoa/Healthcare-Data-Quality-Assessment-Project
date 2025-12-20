@@ -123,7 +123,7 @@ A hospital may record multiple admissions, but each admission occurs at a single
 A doctor may treat multiple admissions, while each admission is assigned to one doctor.
 An admission may include zero or multiple treatments, but each treatment belongs to exactly one admission.
 
-
+This model highlights how each table should ideally relate to one another, explaining why duplication and fragmentation were observed in the original dataset due to the absence of primary keys.
 
 # Executive Summary
 
