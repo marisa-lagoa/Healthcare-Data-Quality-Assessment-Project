@@ -157,7 +157,11 @@ All of this is implausible compared to real healthcare systems. Each hospital ma
 
 
 ## Clinical Misalignment
-The analysis of condition-medication combinations revealed illogical patterns with nearly identical counts (around 1,900 each), such as Lipitor (cholesterol) for Cancer and Penicillin (antibiotic) for Obesity. This issue affects quality of care and patient safety. Incorrect medication prescription is a serious risk, and the inability to trust the data for clinical analysis prevents the optimization of treatment protocols.
+The analysis of condition-medication combinations revealed illogical patterns with nearly identical counts (around 1,900 each), such as Lipitor (cholesterol) for Cancer and Penicillin (antibiotic) for Obesity.
+
+![Clinical Misalignment](images/medication_condition_misalignment.png)
+
+This issue affects quality of care and patient safety. Incorrect medication prescription is a serious risk, and the inability to trust the data for clinical analysis prevents the optimization of treatment protocols.
 This pattern is a strong indicator of synthetic data generation, where variables were randomly combined instead of following clinical logic. In a real-world scenario, this could indicate severe failures in clinical decision.
 
 
