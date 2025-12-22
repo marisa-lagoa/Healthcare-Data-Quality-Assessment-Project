@@ -3,18 +3,12 @@ This project utilizes a healthcare dataset from Kaggle to develop and demonstrat
 
 # Table of Contents
 
-1.Background and Overview
-
-2.Data Structure Overview
-
-3.Executive Summary
-
-4.Insights Deep Dive
-
-5.Recommendations
-
-6.Caveats and Assumptions
-
+- [Background and Overview](#background-and-overview)
+- [Data Structure Overview](#data-structure-overview)
+- [Executive Summary](#executive-summary)
+- [Insights Deep Dive](#insights-deep-dive)
+- [Recommendations](#recommendations)
+- [Caveats and Assumptions](#caveats-and-assumptions) 
 
 
 # Background and Overview
