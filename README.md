@@ -134,12 +134,27 @@ This analysis revealed that the SynthCare Health dataset suffers from systemic d
 
 ## Billing Anomalies
 The analysis of 55,500 admission records showed that billing amounts are distributed almost uniformly between $1,000 and $50,000. ![billing_amount destribution](images/billing_amounts.png) 
+
 458 cases were found with billing amounts artificially clustered near the upper limit of $52,764, and 302 cases had suspiciously low values (<$1,000) for multi-day hospital stays.
-![Billing summary statistics](Billing_summary_statistics.png)
+![Billing summary statistics](images/Billing_summary_statistics.png)
+
 In the past, SynthCare Health may have relied on manual or outdated billing systems, leading to inconsistent cost data capture. The data uniformity may be an artifact of a test system or a synthetic data generation process that fails to adequately simulate real-world variation, where a small percentage of complex cases (Pareto principle) typically drive the majority of costs.
 
 ## Entity Fragmentation
-The dataset contains 39,639 unique hospital names and 39,959 unique doctor names for only 55,500 admissions. Additionally, 75% of doctors are associated with only one patient. All of this is implausible compared to real healthcare systems. Each hospital may have used its own naming conventions (e.g., "Smith LLC," "Smith Group," "Ltd Smith"), and data consolidation was done without a cleaning and standardization process, resulting in this unrealistic amount of duplicated entities.
+The dataset contains 39,639 unique hospital names serving only 55500 patients and the top 10 largest hospitals all maintain similar patient volumes (32-44 patients).
+
+![Top 10 hospitals](images/top_10_hospitals.png)
+
+
+28% of the patients names repeat which exceeds typical real-world healthcare database rates (8-16%)
+![Patient Name analysis](images/patient_name_analysis.png)
+
+39,959 unique doctor names for only 55,500 admissions in which 75% of doctors are associated with only one patient. 
+
+![Doctor Distribution Patterns](images/doctor_distribution.png)
+
+All of this is implausible compared to real healthcare systems. Each hospital may have used its own naming conventions (e.g., "Smith LLC," "Smith Group," "Ltd Smith"), and data consolidation was done without a cleaning and standardization process, resulting in this unrealistic amount of duplicated entities.
+
 
 ## Clinical Misalignment
 The analysis of condition-medication combinations revealed illogical patterns with nearly identical counts (around 1,900 each), such as Lipitor (cholesterol) for Cancer and Penicillin (antibiotic) for Obesity. This issue affects quality of care and patient safety. Incorrect medication prescription is a serious risk, and the inability to trust the data for clinical analysis prevents the optimization of treatment protocols.
