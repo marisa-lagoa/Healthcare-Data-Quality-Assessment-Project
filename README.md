@@ -162,12 +162,15 @@ This pattern is a strong indicator of synthetic data generation, where variables
 # Recommendations
 
 1. Implement automated validation rules for medication-condition clinical alignment
+   
 In real healthcare settings, it could be useful to implement a clinical decision support system that automatically checks if a prescribed medication is clinically appropriate for the patient’s condition. By developing a database that maps medications to their appropriate medical conditions, the system could flag a prescription if it doesn’t align with the diagnosed condition (for example, flagging insulin for a fracture). This would serve as a safety net against prescription errors while significantly improving data quality for analytical purposes.
    
 2. Establish standardized naming conventions for healthcare facilities
+   
 To address inconsistent hospital naming patterns, I would propose creating a national registry of healthcare institutions with standardized official names, where each facility receives a unique ID. Furthermore, an automated namematching software could be implemented to correct variations (e.g., standardizing ‘Hospital St. Mary’, ‘St Mary Hospital’, and ‘St. Mary’s Medical Center’ to one official name). This standardization would enable more accurate performance analysis and reporting by institution.
    
 3. Implement systems with pre-configured pricing
+   
 Rather than manual entry I recommend automated price selection based on service type and insurance provider. Each insurance company would have their rate tables and public healthcare services would also have standardized pricing. This approach would eliminate the artificial billing patterns observed in this synthetic dataset, where amounts appear randomly generated rather than reflecting real healthcare pricing structures.
 
 
